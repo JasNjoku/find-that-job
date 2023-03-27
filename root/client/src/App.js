@@ -53,6 +53,7 @@ function App() {
           <h1>Jobs</h1>
           {jobs.map((job, index) =>
             <JobCard
+              website={job.website}
               jobTitle={job.jobTitle}
               jobCompany={job.jobCompany}
               jobLocation={job.jobLocation}
