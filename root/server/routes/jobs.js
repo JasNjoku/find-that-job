@@ -57,8 +57,7 @@ async function start() {
                     return Array.from(document.querySelectorAll('.base-search-card__info')).map(job => {
                         return {
                             website: 'LinkedIn.com',
-                            // get parent element
-                            titleHref: 'job.querySelector().href',
+                            titleHref: job.querySelector('.base-search-card__title').parentElement.parentElement.firstElementChild.href,
                             jobTitle: job.querySelector('.base-search-card__title').textContent.trim(),
                             jobCompany: job.querySelector('.base-search-card__subtitle > a').textContent.trim(),
                             jobLocation: job.querySelector('.base-search-card__metadata > span').textContent.trim()

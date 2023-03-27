@@ -194,6 +194,10 @@ nav form button:hover {
   color: white;
 }
 
+.job-results__jobs {
+  flex-basis: 70%;
+}
+
 .job-results {
   height: 100vh;
   display: flex;
@@ -201,6 +205,7 @@ nav form button:hover {
 }
 
 .jobs-wrapper {
+  padding: 50px 0;
   display: flex;
 }
 
@@ -222,6 +227,7 @@ a:hover {
 }
 
 .job-card {
+  position: relative;
   width: 350px;
   height: 250px;
   display: flex;
@@ -235,6 +241,13 @@ a:hover {
   border-radius: 3px;
   border: 1px solid #ffffff;
   text-align: center;
+  top: 0px;
+  transition: top 0.4s,
+}
+
+.job-card:hover {
+  top: -5px;
+  transform: scale(1.02);
 }
 
 .job-card > h5 {
