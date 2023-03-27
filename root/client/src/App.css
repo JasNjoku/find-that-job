@@ -9,4 +9,8 @@
   max-height: 100vh;
 }
 
-
+.job-card {
+  border: 2px solid cyan;
+  padding: 10px;
+  margin: 5px;
+}
