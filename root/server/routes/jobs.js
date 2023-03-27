@@ -13,7 +13,7 @@ async function start() {
         const location = req.params.location;
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
-
+        let jobs = []
 
         await page.setExtraHTTPHeaders({
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36',
@@ -33,7 +33,7 @@ async function start() {
            return await page.evaluate(() => {
                 return Array.from(document.querySelectorAll('.resultContent')).map(job => {
                     return {
-                        
+                        website: 'Indeed',
                         jobTitle: job.querySelector('.jobTitle > a > span').textContent,
                         jobCompany: job.querySelector('.companyName').textContent,
                         jobLocation: job.querySelector('.companyLocation').textContent
@@ -45,12 +45,12 @@ async function start() {
         async function getLinkedInJobs() {
             await page.goto(`https://www.linkedin.com/jobs/search?keywords=${query}&location=${location}`)
             await page.waitForSelector('.jobs-search__results-list')
-            await page.screenshot({ path: 'Test.png', fullPage: true }).then(console.log('Screenshot taken!'))
-
+            
             return await page.evaluate(() => {
                 return Array.from(document.querySelectorAll('.base-search-card__info')).map(job => {
-
+                    
                     return {
+                        website: 'LinkedIn',
                         jobTitle: job.querySelector('.base-search-card__title').textContent.trim(),
                         jobCompany: job.querySelector('.base-search-card__subtitle > a').textContent.trim(),
                         jobLocation: job.querySelector('.base-search-card__metadata > span').textContent.trim()
@@ -59,9 +59,27 @@ async function start() {
             })
         }
 
+        async function getIrishJobs() {
+            await page.goto(`https://www.irishjobs.ie/ShowResults.aspx?Keywords=${query}&Location=0`)
+            await page.waitForSelector('.two-thirds');
+            await page.screenshot({ path: 'Test.png', fullPage: true }).then(console.log('Screenshot taken!'))
         
-       let jobs = await getIndeedJobs()
-       jobs = [...jobs, ...await getLinkedInJobs()]
+            return await page.evaluate(() => {
+                return Array.from(document.querySelectorAll('div.job-result')).map(job => {
+           
+                    return {
+                        website: 'IrishJobs',
+                        jobTitle: job.querySelector('div.job-result-title > h2 > a').textContent.trim(),
+                        jobCompany: job.querySelector('div.job-result-title > h3 > a').textContent.trim(),
+                        jobLocation: job.querySelector('div.job-result-overview > ul > .location > a').textContent.trim()
+                    }
+                })
+            })
+
+        }
+
+
+       jobs = [...jobs, ...await getIrishJobs(), ...await getLinkedInJobs(), ...await getIndeedJobs()]
         
 
 
