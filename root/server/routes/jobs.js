@@ -15,8 +15,6 @@ async function start() {
         const page = await browser.newPage();
         let jobs = []
 
-        console.log('Searching...')
-
         //http headers
         await page.setExtraHTTPHeaders({
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36',
@@ -99,7 +97,7 @@ async function start() {
 
 
         res.json(jobs)
-        await browser.close().then(console.log('Connection Closed'))
+        await browser.close()
     })
 
 }
