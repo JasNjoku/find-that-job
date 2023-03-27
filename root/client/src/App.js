@@ -1,12 +1,13 @@
 import './App.css';
 import {
   createBrowserRouter,
+  createHashRouter,
   RouterProvider
 } from 'react-router-dom';
 import Search from './Routes/Search';
 import JobsRoute from './Routes/JobsRoute';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Search />,
