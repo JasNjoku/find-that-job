@@ -15,6 +15,8 @@ async function start() {
         const page = await browser.newPage();
         let jobs = []
 
+        console.log('Searching...')
+
         //http headers
         await page.setExtraHTTPHeaders({
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36',
@@ -32,7 +34,8 @@ async function start() {
                 return await page.evaluate(() => {
                     return Array.from(document.querySelectorAll('.resultContent')).map(job => {
                         return {
-                            website: 'Indeed',
+                            website: 'Indeed.ie',
+                            titleHref: job.querySelector('.jobTitle > a').href,
                             jobTitle: job.querySelector('.jobTitle > a > span').textContent.trim(),
                             jobCompany: job.querySelector('.companyName').textContent.trim(),
                             jobLocation: job.querySelector('.companyLocation').textContent.trim()
@@ -53,7 +56,9 @@ async function start() {
                 return await page.evaluate(() => {
                     return Array.from(document.querySelectorAll('.base-search-card__info')).map(job => {
                         return {
-                            website: 'LinkedIn',
+                            website: 'LinkedIn.com',
+                            // get parent element
+                            titleHref: 'job.querySelector().href',
                             jobTitle: job.querySelector('.base-search-card__title').textContent.trim(),
                             jobCompany: job.querySelector('.base-search-card__subtitle > a').textContent.trim(),
                             jobLocation: job.querySelector('.base-search-card__metadata > span').textContent.trim()
@@ -69,11 +74,16 @@ async function start() {
         async function getIrishJobs() {
             try {
                 await page.goto(`https://www.irishjobs.ie/ShowResults.aspx?Keywords=${query}&Location=0`);
-                await page.waitForSelector('.two-thirds');
+                try {
+                    await page.waitForSelector('.two-thirds');
+                } catch (err) {
+                    return [];
+                }
                 return await page.evaluate(() => {
                     return Array.from(document.querySelectorAll('div.job-result')).map(job => {
                         return {
-                            website: 'IrishJobs',
+                            website: 'IrishJobs.ie',
+                            titleHref: job.querySelector('div.job-result-title > h2 > a').href,
                             jobTitle: job.querySelector('div.job-result-title > h2 > a').textContent.trim(),
                             jobCompany: job.querySelector('div.job-result-title > h3 > a').textContent.trim(),
                             jobLocation: job.querySelector('div.job-result-overview > ul > .location > a').textContent.trim()
