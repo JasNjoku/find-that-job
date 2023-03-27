@@ -23,7 +23,7 @@ function JobsRoute() {
     }, [query, location])
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/jobs/${jobTitle}/${jobLocation}`)
+        axios.get(`https://find-that-job.herokuapp.com/jobs/${jobTitle}/${jobLocation}`)
             .then((res => {
                 if (res.data === 'You reached me O_O?') {
                     setLoaded(false)
