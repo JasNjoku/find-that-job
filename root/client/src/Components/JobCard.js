@@ -1,11 +1,12 @@
-function JobCard(props) {
+import { Link } from "react-router-dom";
 
+function JobCard(props) {
     return (
     <div className='job-card' key={props.index}>
-        <p>{props.website}</p>
-        <p className='job-card__title'>{props.jobTitle}</p>
-        <p className='job-card__company'>{props.jobCompany}</p>
-        <p className='job-card__location'>{props.jobLocation}</p>
+        <a rel="noreferrer" target={'_blank'} href={`https://${props.website}`}>{props.website}</a>
+        <a className="job-card__title" rel="noreferrer" target={'_blank'} href={`${props.titleHref}`}><h2>{props.jobTitle}</h2></a>
+        <h3 className='job-card__company'>{props.jobCompany}</h3>
+        <h4 className='job-card__location'>{props.jobLocation}</h4>
     </div>
     )
 }
