@@ -13,6 +13,6 @@ app.get('/', (req, res) => {
 
 app.use('/jobs', jobsRoute)
 
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
     console.log(`Example app listening on port ${port}`)
 })
