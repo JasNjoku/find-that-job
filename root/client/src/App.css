@@ -300,10 +300,48 @@ a:hover {
 .slider-btn:hover {
   background: rgba(0, 0, 0, 0.1);
 }
-/* 
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 1000px) {
   .jobs-wrapper__box {
     flex-direction: column;
+    justify-content: space-around;
     height: 100%;
   }
-} */
+
+  nav {
+    height: auto;
+    justify-content: center;
+  }
+
+  nav > form {
+    height: auto;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  nav > form div {
+    margin: 10px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .job-card {
+    width: 80%;
+    margin: 10px 0;
+  }
+
+  #root > div > div > nav > h1 {
+    display: none;
+  }
+
+  #root > div > div > div > div > div > button:nth-child(1) {
+    transform: rotate(90deg);
+  }
+
+  #root > div > div > div > div > div > button:nth-child(5) {
+    transform: rotate(90deg);
+  }
+}
