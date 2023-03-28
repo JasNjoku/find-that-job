@@ -1,5 +1,5 @@
 # Find That Job Web Application
-Find That Job is a web application that helps you search for job listings across various job websites using web scraping techniques. The application is built using Node.js and utilizes the Puppeteer library for web scraping and Axios for handling HTTP requests.
+Find That Job is a web application that helps you search for job listings across various job websites using web scraping techniques. The application is built using Node.js and ReactJS for the frontend and utilizes the Puppeteer library for web scraping and Axios for handling HTTP requests.
 
 <h2>Installation</h2>
 To use the application, you need to have Node.js installed on your machine. Once you have Node.js installed, you can clone the repository to your local machine using the following command: 
