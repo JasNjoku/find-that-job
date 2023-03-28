@@ -7,7 +7,7 @@ import {
 import Search from './Routes/Search';
 import JobsRoute from './Routes/JobsRoute';
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <Search />,

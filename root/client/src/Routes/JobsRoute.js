@@ -23,7 +23,7 @@ function JobsRoute() {
     }, [query, location])
 
     useEffect(() => {
-        axios.get(`https://find-that-job.fly.dev/jobs/${jobTitle}/${jobLocation}`)
+        axios.get(`http://localhost:4000/jobs/${jobTitle}/${jobLocation}`)
             .then((res => {
                 if (res.data === 'You reached me O_O?') {
                     setLoaded(false)
@@ -58,7 +58,7 @@ function JobsRoute() {
     return (
         <div className="job-results">
             <nav>
-                <form action={`http://localhost:3000/jobs/${jobTitle}/${jobLocation}`} method="GET" className='queryForm'>
+                <form action={`http://localhost:3000/jobs/${jobTitle}/${jobLocation}`} className='queryForm'>
                     <div>
                         <input defaultValue={jobTitle} required placeholder='Search Job Title' id="job_Title" onChange={(e) => setJobTitle(e.target.value)} />
                     </div>
